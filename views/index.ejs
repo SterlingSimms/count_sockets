@@ -12,13 +12,13 @@
             socket.emit('increment');
         });
         socket.on('incremented', function(num){
-            $('#display').html(`<p>The button has been pushed ${num} times!</p>`);
+            $('#display').html(`<p>The button has been pushed ${num.count} times!</p>`);
         });
         $('#reset').click(function(){
             socket.emit('reset');
         });
         socket.on('reset', function(num){
-            $('#display').html(`<p>The button has been pushed ${num} times! </p>`);
+            $('#display').html(`<p>The button has been pushed ${num.count} times! </p>`);
         });
     });
     </script>
