@@ -27,18 +27,16 @@ let server = app.listen(6789, () => {
     console.log("listening on port 6789");
 });
 let io = require('socket.io').listen(server);
+var count = 0;
 io.sockets.on('connection', function (socket) {
     console.log("Client/socket is connected!");
     console.log("Client/socket id is: ", socket.id);
     socket.on('increment', function(){
-        if(!session.num){
-            session.num = 0;
-        }
-        session.num++
-        io.emit('incremented', session.num);      
+        count++
+        io.emit('incremented', {count: count});      
     });
     socket.on('reset', function(){
-        session.num=0;
-        io.emit('reset', session.num);
+        count=0;
+        io.emit('reset', {count: count});
     });
 });
